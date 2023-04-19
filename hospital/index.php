@@ -31,7 +31,7 @@ $sid = $_SESSION["id"];
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" onclick="return confirm('Do you want to Logout?')" href="/">Logout</a>
+                        <a class="nav-link" onclick="return confirm('Do you want to Logout?')" href="/signin.php">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -87,8 +87,10 @@ $sid = $_SESSION["id"];
             </div>
         </div>
     </div>
-    <br>  
-    <?php if(isset($_GET["email"]) && isset($_GET["password"])){ 
+    <br>
+    <?php 
+    if(isset($_GET["email"]) && isset($_GET["password"]) ){ 
+        if($_GET["otpold"]==$_GET["otpnew"]){
         $email = $_GET["email"];
         $password = $_GET["password"];
         $result = $conn->query("SELECT * FROM user WHERE email='$email' AND password='$password'");
@@ -183,7 +185,12 @@ $sid = $_SESSION["id"];
         </div>
         <?php }}else{?>
             <p style="text-align:center;color:#444;font-size:18px">User not Found or email ,password is wrong</p>
-        <?php }}else{ ?>
+    <?php }}else{
+        ?>
+            <p style="text-align:center;color:#444;font-size:18px">OTP NOT VALID</p>
+            <a  style="display:block;text-align:center;color:#444;font-size:18px" href="/hospital">Check again</a>
+        <?php
+    }}else{ ?>
         <center>
             <div class="container" style="width: 400px;">
                 <h4 class="modal-title" style="color:#2b74e2">Search User</h4>
@@ -196,7 +203,14 @@ $sid = $_SESSION["id"];
                         <input required type="password" class="form-control"  name="password" placeholder="password">
                         <label>User Password</label>
                     </div>
-                    <div>
+                    <div id="btn">
+                        <button type="button" onclick="otp()" class="btn  w-50" style="background-color:#2b74e2;color:#fff">GET OTP</button>
+                    </div>
+                    <div id="otp" style="display:none">
+                        <div class="form-floating mb-3 mt-3">
+                            <input required type="number" class="form-control"  name="otpnew" placeholder="OTP">
+                            <label>Enter OTP</label>
+                        </div>
                         <button class="btn  w-50" style="background-color:#2b74e2;color:#fff">Search</button>
                     </div>
                 </form>
@@ -206,6 +220,16 @@ $sid = $_SESSION["id"];
     <br>
 </div>
 
+<script>
+    function otp(){
+        var otp = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById("otp").style.display = "block"
+        document.getElementById("btn").innerHTML=`
+        <input type="hidden" name="otpold" value="${otp}">
+        <p class="alert alert-primary" style="position:fixed;bottom:10px;right:50px">Your OTP is ${otp}</>
+        `
+    }
+</script>
 
 
 
