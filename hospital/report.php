@@ -13,10 +13,11 @@ $uid = $_POST["id"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $dname = $_POST["dname"];
+$data = $_POST["data"];
 
 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-    $sql = "INSERT INTO list (uid,hid,pdf,dname)
-    VALUES ('$uid','$hid','$file','$dname')";
+    $sql = "INSERT INTO list (uid,hid,pdf,dname,data)
+    VALUES ('$uid','$hid','$file','$dname','$data')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: /hospital?email=$email&password=$password&msg=Image uploaded Successfully !");

@@ -128,6 +128,10 @@ $sid = $_SESSION["id"];
                             <input required type="text" class="form-control"  name="dname" placeholder="Hospital Name">
                             <label>Docter Name</label>
                         </div>
+                        <div class="form-floating mb-3 ">
+                            <textarea required type="text" class="form-control"  name="data" placeholder="Description"></textarea>
+                            <label>Description</label>
+                        </div>
                         <div class="form-floating mb-3 mt-3">
                             <input required type="file" class="form-control"  name="file" placeholder="File">
                             <label>File</label>
@@ -150,6 +154,7 @@ $sid = $_SESSION["id"];
                         <th>#</th>
                         <th>Hospital Name</th>
                         <th>Docter Name</th>
+                        <th>Description</th>
                         <th>File</th>
                     </tr>
                 </thead>
@@ -167,6 +172,7 @@ $sid = $_SESSION["id"];
                                     <td style="text-align:center"><?php echo($i) ?></td>
                                     <td><?php echo($row2["name"]) ?></td>
                                     <td><?php echo($row1["dname"]) ?></td>
+                                    <td><?php echo($row1["data"]) ?></td>
                                     <td><a href="/hospital/uploads/<?php echo($row1["pdf"]) ?>" target="_blank">Click here</a></td>
                                     
                                 </tr>

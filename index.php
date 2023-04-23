@@ -22,7 +22,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="/hospital">Hospital</a>
+                        <a class="nav-link" href="/signin.php">Hospital</a>
                     </li>
 
                     <li class="nav-item">
@@ -60,6 +60,7 @@
                         <th>#</th>
                         <th>Hospital Name</th>
                         <th>Docter Name</th>
+                        <th>Description</th>
                         <th>File</th>
                     </tr>
                 </thead>
@@ -77,6 +78,7 @@
                                     <td style="text-align:center"><?php echo($i) ?></td>
                                     <td><?php echo($row2["name"]) ?></td>
                                     <td><?php echo($row1["dname"]) ?></td>
+                                    <td><?php echo($row1["data"]) ?></td>
                                     <td><a href="/hospital/uploads/<?php echo($row1["pdf"]) ?>" target="_blank">Click here</a></td>
                                     
                                 </tr>
