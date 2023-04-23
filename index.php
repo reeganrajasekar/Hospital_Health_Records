@@ -66,6 +66,7 @@
                 </thead>
                 <tbody>
                 <?php
+                    $i=0;
                     $result1 = $conn->query("SELECT * FROM list WHERE uid='$uid' ORDER BY id DESC");
                     if($result1->num_rows > 0){
                         while($row1 = $result1->fetch_assoc()){
